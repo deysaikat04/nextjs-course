@@ -15,7 +15,7 @@ const EventDetailsPage = () => {
   }
   return (
     <Fragment>
-      <EventSummary />
+      <EventSummary title={anEvent.title} />
       <EventLogistics
         date={anEvent.date}
         address={anEvent.location}

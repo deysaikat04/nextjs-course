@@ -1,6 +1,5 @@
+const AllEventsPage = () => {
+  return <div>AllEventsPage</div>;
+};
 
-export const AllEventsPage = () => {
-    return (
-        <div>AllEventsPage</div>
-    )
-}
+export default AllEventsPage;

@@ -1,4 +1,5 @@
 import EventList from "@/components/events/event-list";
+import ResultsTitle from "@/components/events/results-title";
 import Button from "@/components/ui/button";
 import ErrorAlert from "@/components/ui/error-alert";
 import { getFilteredEvents } from "@/dummy-data";
@@ -45,7 +46,6 @@ const FilteredEventPage = () => {
     month: numMonth,
   });
 
-  console.log(filteredEvents);
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
@@ -58,8 +58,12 @@ const FilteredEventPage = () => {
       </Fragment>
     );
   }
+
+  const dateAsHeader = new Date(numYear, numMonth - 1);
+
   return (
     <Fragment>
+      <ResultsTitle date={dateAsHeader} />
       <EventList events={filteredEvents} />
     </Fragment>
   );

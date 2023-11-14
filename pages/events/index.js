@@ -1,11 +1,10 @@
 import EventList from "@/components/events/event-list";
 import EventsSearch from "@/components/events/events-search";
-import { getAllEvents } from "@/dummy-data";
+import { getAllEvents } from "@/helpers/api-utils";
 import { useRouter } from "next/router";
 import { Fragment } from "react";
 
-const AllEventsPage = () => {
-  const events = getAllEvents();
+const AllEventsPage = ({events}) => {
   const router = useRouter();
 
   const findEventHandler = (year, month) => {
@@ -19,5 +18,26 @@ const AllEventsPage = () => {
     </Fragment>
   );
 };
+
+export async function getStaticProps() {
+  const { error, data } = await getAllEvents() ;
+  if (error) {
+    return {
+      props: {
+        error: true,
+        events: [],
+        message: "Some error occurred",
+      },
+    };
+  }
+  return {
+    props: {
+      error: false,
+      events: data,
+      message: "",
+    },
+    revalidate: 60,
+  };
+}
 
 export default AllEventsPage;

@@ -25,3 +25,21 @@ export async function getAllEvents() {
 
   return dataToReturn;
 }
+
+export async function getEventById(eventId) {
+  const { error, data } = await getAllEvents();
+  if (error) {
+    return [];
+  }
+
+  return data.find((anEvent) => anEvent.id === eventId);
+}
+
+export async function getFeaturedEvents() {
+  const { error, data } = await getAllEvents();
+  if (error) {
+    return [];
+  }
+
+  return data.filter((event) => event.isFeatured);
+}

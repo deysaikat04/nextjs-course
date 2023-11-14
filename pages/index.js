@@ -36,5 +36,6 @@ export async function getStaticProps() {
       featuredList: data,
       message: "",
     },
+    revalidate: 1800,
   };
 }

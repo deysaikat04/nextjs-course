@@ -43,3 +43,18 @@ export async function getFeaturedEvents() {
 
   return data.filter((event) => event.isFeatured);
 }
+
+export async function getFilteredEvents(dateFilter) {
+  const { year, month } = dateFilter;
+
+  const { data: allEvents } = await getAllEvents();
+
+  let filteredEvents = allEvents.filter((event) => {
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getFullYear() === year && eventDate.getMonth() === month - 1
+    );
+  });
+
+  return filteredEvents;
+}
